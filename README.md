@@ -1,4 +1,4 @@
-# Comparison between Cross-Platform-Frameworks using Note-App Example
+# Cross-Platform-Framework comparison using Note-App Example
 
 ## Server
 
