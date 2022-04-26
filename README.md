@@ -1,3 +1,5 @@
+[![Generic badge](https://img.shields.io/badge/Work%20in%20Progress%3F-YES-red.svg)](https://shields.io/)
+
 # Cross-Platform-Framework comparison
 
 ## Note-App Example
