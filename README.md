@@ -17,3 +17,10 @@ All apps have the same functional properties. They are developed with their resp
 - Flutter
 - React Native
 - Xamarin
+
+```
+.
+├── server          # Express Server
+├── flutterapp      # Flutter App
+├── reactnativeapp  # React Native App
+└── xamarinapp      # Xamarin App
