@@ -1,11 +1,41 @@
-cp .env.example .env
+# Server
 
-npm i
+Note-Server with NodeJS, Express, Prisma und Postgres
 
-docker compose up -d
+## Setup
 
-npx prisma generate
+Generate prisma client:
 
-npx prisma db push
+```bash
+$ npx prisma generate
+```
 
-npm run dev
+Install dependencies:
+
+```bash
+$ npm install
+```
+
+Set environment variables:
+
+```bash
+$ cp .env.example .env
+```
+
+Start services (Postgres):
+
+```bash
+$ docker-compose up -d
+```
+
+Apply database migrations (dev):
+
+```bash
+$ npx prisma db push
+```
+
+Start the server (dev):
+
+```bash
+$ npm run dev
+```
