@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import CreateNoteModal from '../CreateNoteModal';
+import CreateNoteModal from '../../CreateNoteModal';
 
 export interface HeaderProps {
   title: string;
@@ -16,7 +16,6 @@ export const Header: React.FC<HeaderProps> = ({ title, withoutModal }) => {
     <>
       <View
         style={{
-          paddingHorizontal: 10,
           marginBottom: 15,
           flexDirection: 'row',
           justifyContent: 'space-between',
@@ -33,7 +32,7 @@ export const Header: React.FC<HeaderProps> = ({ title, withoutModal }) => {
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            <Text>Neue Notiz</Text>
+            <Text>New Note</Text>
           </TouchableOpacity>
         )}
       </View>

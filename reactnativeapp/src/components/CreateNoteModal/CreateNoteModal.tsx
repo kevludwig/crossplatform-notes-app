@@ -1,16 +1,19 @@
 import axios from 'axios';
 import React, { Dispatch, SetStateAction, useState } from 'react';
-import { Modal, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Modal, StyleSheet, View } from 'react-native';
 import { useMutation } from 'react-query';
-import { queryClient } from '../../../App';
-import Header from '../Header';
+import queryClient from '../../lib/queryClient';
+import { CreateNote } from '../../types';
+import Button from '../Ui/Button';
+import ModalHeader from '../Ui/ModalHeader/ModalHeader';
+import TextInput from '../Ui/TextInput';
 
 export interface CreateNoteModalProps {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-const createNote = async (note: { title: string; body: string }) => {
+const createNote = async (note: CreateNote) => {
   const data = await axios.post('http://localhost:3000/notes', note);
   console.log(data.data);
   return data.data;
@@ -25,6 +28,7 @@ export const CreateNoteModal: React.FC<CreateNoteModalProps> = ({
 }) => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
+
   const { mutate } = useMutation(createNote, {
     onSuccess: data => {
       console.log('success', data);
@@ -36,38 +40,23 @@ export const CreateNoteModal: React.FC<CreateNoteModalProps> = ({
       queryClient.refetchQueries('notes');
     },
   });
+
   return (
     <Modal
       visible={open}
       onRequestClose={() => setOpen(false)}
       animationType="slide"
       presentationStyle="pageSheet">
-      <View style={{ paddingTop: 10 }}>
-        <Header title="New Note" withoutModal />
-      </View>
-      <View style={{ paddingHorizontal: 10, marginTop: 10 }}>
+      <ModalHeader title="New Note" />
+      <View style={styles.content}>
         <TextInput
-          style={{
-            backgroundColor: 'lightgrey',
-            paddingVertical: 10,
-            paddingHorizontal: 15,
-            height: 50,
-            borderRadius: 25,
-          }}
+          style={styles.titleInput}
           placeholder="Title"
           value={title}
           onChangeText={text => setTitle(text)}
         />
         <TextInput
-          style={{
-            marginTop: 15,
-            backgroundColor: 'lightgrey',
-            paddingTop: 15,
-            paddingBottom: 15,
-            paddingHorizontal: 15,
-            height: 300,
-            borderRadius: 25,
-          }}
+          style={styles.bodyInput}
           multiline
           numberOfLines={10}
           maxLength={500}
@@ -75,27 +64,16 @@ export const CreateNoteModal: React.FC<CreateNoteModalProps> = ({
           value={body}
           onChangeText={text => setBody(text)}
         />
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'flex-end',
-            marginTop: 10,
-          }}>
-          <TouchableOpacity
+        <View style={styles.actionContainer}>
+          <Button
             onPress={async () => {
               mutate({ title, body });
               setTitle('');
               setBody('');
               setOpen(false);
             }}
-            style={{
-              backgroundColor: 'grey',
-              paddingVertical: 10,
-              paddingHorizontal: 15,
-              borderRadius: 25,
-            }}>
-            <Text>Add</Text>
-          </TouchableOpacity>
+            text="Add"
+          />
         </View>
       </View>
     </Modal>
@@ -103,3 +81,19 @@ export const CreateNoteModal: React.FC<CreateNoteModalProps> = ({
 };
 
 export default CreateNoteModal;
+
+const styles = StyleSheet.create({
+  content: { paddingHorizontal: 10, marginTop: 10 },
+  titleInput: { height: 50 },
+  bodyInput: {
+    marginTop: 15,
+    paddingTop: 15,
+    paddingBottom: 15,
+    height: 200,
+  },
+  actionContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    marginTop: 10,
+  },
+});

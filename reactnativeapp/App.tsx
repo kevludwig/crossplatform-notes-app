@@ -1,16 +1,13 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native';
-import { QueryClient, QueryClientProvider } from 'react-query';
-import Header from './src/components/Header';
+import { SafeAreaView, StyleSheet } from 'react-native';
+import { QueryClientProvider } from 'react-query';
 import NoteList from './src/components/NoteList/NoteList';
-
-export const queryClient = new QueryClient();
+import queryClient from './src/lib/queryClient';
 
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <SafeAreaView style={{ flex: 1 }}>
-        <Header title="Notes" />
+      <SafeAreaView style={styles.container}>
         <NoteList />
       </SafeAreaView>
     </QueryClientProvider>
@@ -18,3 +15,5 @@ const App = () => {
 };
 
 export default App;
+
+const styles = StyleSheet.create({ container: { flex: 1 } });
