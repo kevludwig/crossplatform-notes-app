@@ -1,5 +1,8 @@
 [![Generic badge](https://img.shields.io/badge/Work%20in%20Progress%3F-YES-red.svg)](https://shields.io/)
 
+[![Generic badge](https://img.shields.io/badge/React%20Native-ready-green.svg)](https://shields.io/)
+[![Generic badge](https://img.shields.io/badge/Flutter-ready-green.svg)](https://shields.io/)
+
 # Cross-Platform-Framework comparison
 
 ## Note-App Example
