@@ -6,11 +6,14 @@ const app = express();
 
 app.use(express.json());
 
+// Get all notes
 app.get("/notes", async (req, res) => {
+  console.log(req)
   const notes = await prisma.note.findMany();
   res.json(notes);
 });
 
+// Get note by id
 app.get("/notes/:id", async (req, res) => {
   const { id } = req.params;
 
@@ -25,6 +28,7 @@ app.get("/notes/:id", async (req, res) => {
   }
 });
 
+// Create new note
 app.post("/notes", async (req, res) => {
   const { title, body } = req.body;
   const result = await prisma.note.create({
@@ -36,6 +40,7 @@ app.post("/notes", async (req, res) => {
   res.json(result);
 });
 
+// Delete note by id
 app.delete(`/notes/:id`, async (req, res) => {
   const { id } = req.params;
   const note = await prisma.note.delete({
@@ -46,6 +51,7 @@ app.delete(`/notes/:id`, async (req, res) => {
   res.json(note);
 });
 
+// Update note by id
 app.put(`/notes/:id`, async (req, res) => {
   const { id } = req.params;
   const { title, body } = req.body;

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:c="clr-namespace:Xamarin.Forms.ConvertersPack;assembly=Xamarin.Forms.ConvertersPack"
+    xmlns:b="clr-namespace:Xamarin.Forms.MVVMBase.Behaviors;assembly=Xamarin.Forms.MVVMBase"
+    Title="Notes"
+    x:Class="xamarinapp.View.MainPage">
+    <ContentPage.Content>
+        <StackLayout>
+        <!--<Button Text="Create" Clicked="Button_Clicked" />-->
+     
+            <ListView RowHeight="60" HasUnevenRows="True" ItemsSource="{Binding Notes}" IsRefreshing="{Binding IsBusy}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="100"> 
+                            <StackLayout Orientation="Vertical" Padding="8,0,8,0">
+                                <Label Text="{Binding title}" FontSize="Header" FontAttributes="Bold" LineBreakMode="TailTruncation" />
+                                <Label Text="{Binding body}" MaxLines="3" LineBreakMode="TailTruncation" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Behaviors>
+                    <b:SelectedItemBehavior Command="{Binding ItemTappedCommand}"/>
+                </ListView.Behaviors>
+            </ListView>
+
+    </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

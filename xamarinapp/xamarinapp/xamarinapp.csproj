@@ -13,5 +13,23 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Xamarin.Forms.MVVMBase" Version="2.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Newtonsoft.Json" />
+    <None Remove="Model\" />
+    <None Remove="Views\" />
+    <None Remove="ViewModel\" />
+    <None Remove="Services\" />
+    <None Remove="Helpers\" />
+    <None Remove="Xamarin.Forms.MVVMBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\" />
+    <Folder Include="View\" />
+    <Folder Include="ViewModel\" />
+    <Folder Include="Service\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
 </Project>
